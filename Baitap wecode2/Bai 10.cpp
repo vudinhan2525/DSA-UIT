@@ -22,19 +22,23 @@ void insert(node **root,ll x){
 	}
 	node *tmp = *root;
 	while(tmp){
-		if(x <= tmp->data){
+		if(tmp->data >= x){
 			if(tmp->left == NULL){
 				tmp->left = new node(x);
 				return;
 			}
-			tmp = tmp->left;
+			else{
+				tmp = tmp->left;
+			}
 		}
 		else{
 			if(tmp->right == NULL){
 				tmp->right = new node(x);
 				return;
 			}
-			tmp = tmp->right;
+			else{
+				tmp = tmp->right;
+			}
 		}
 	}	
 	return;
@@ -50,11 +54,11 @@ void topView(node *root){
             mp[tmp.second] = tmp.first->data;
             v.push_back(tmp.first->data);
         }
-		if(tmp.first->left != NULL){
-            qe.push({tmp.first->left, tmp.second - 1});
+		if(tmp.first->right != NULL){
+            qe.push({tmp.first->right, tmp.second - 1});
         }
-        if(tmp.first->right != NULL){
-            qe.push({tmp.first->right,tmp.second + 1});
+        if(tmp.first->left != NULL){
+            qe.push({tmp.first->left,tmp.second + 1});
         }
     }
     sort(v.begin(),v.end());
